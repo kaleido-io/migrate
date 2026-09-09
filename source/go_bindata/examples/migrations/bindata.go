@@ -22,7 +22,7 @@ import (
 func bindataRead(data []byte, name string) ([]byte, error) {
 	gz, err := gzip.NewReader(bytes.NewBuffer(data))
 	if err != nil {
-		return nil, fmt.Errorf("Read %q: %v", name, err)
+		return nil, fmt.Errorf("read %q: %v", name, err)
 	}
 
 	var buf bytes.Buffer
@@ -30,7 +30,7 @@ func bindataRead(data []byte, name string) ([]byte, error) {
 	clErr := gz.Close()
 
 	if err != nil {
-		return nil, fmt.Errorf("Read %q: %v", name, err)
+		return nil, fmt.Errorf("read %q: %v", name, err)
 	}
 	if clErr != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func _1085649617_create_users_tableDownSql() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "1085649617_create_users_table.down.sql", size: 28, mode: os.FileMode(420), modTime: time.Unix(1485750305, 0)}
+	info := bindataFileInfo{name: "1085649617_create_users_table.down.sql", size: 28, mode: os.FileMode(0644), modTime: time.Unix(1485750305, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -105,7 +105,7 @@ func _1085649617_create_users_tableUpSql() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "1085649617_create_users_table.up.sql", size: 95, mode: os.FileMode(420), modTime: time.Unix(1485803085, 0)}
+	info := bindataFileInfo{name: "1085649617_create_users_table.up.sql", size: 95, mode: os.FileMode(0644), modTime: time.Unix(1485803085, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -125,7 +125,7 @@ func _1185749658_add_city_to_usersDownSql() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "1185749658_add_city_to_users.down.sql", size: 46, mode: os.FileMode(420), modTime: time.Unix(1485750443, 0)}
+	info := bindataFileInfo{name: "1185749658_add_city_to_users.down.sql", size: 46, mode: os.FileMode(0644), modTime: time.Unix(1485750443, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -145,7 +145,7 @@ func _1185749658_add_city_to_usersUpSql() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "1185749658_add_city_to_users.up.sql", size: 50, mode: os.FileMode(420), modTime: time.Unix(1485843733, 0)}
+	info := bindataFileInfo{name: "1185749658_add_city_to_users.up.sql", size: 50, mode: os.FileMode(0644), modTime: time.Unix(1485843733, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -154,7 +154,7 @@ func _1185749658_add_city_to_usersUpSql() (*asset, error) {
 // It returns an error if the asset could not be found or
 // could not be loaded.
 func Asset(name string) ([]byte, error) {
-	cannonicalName := strings.Replace(name, "\\", "/", -1)
+	cannonicalName := strings.ReplaceAll(name, "\\", "/")
 	if f, ok := _bindata[cannonicalName]; ok {
 		a, err := f()
 		if err != nil {
@@ -180,7 +180,7 @@ func MustAsset(name string) []byte {
 // It returns an error if the asset could not be found or
 // could not be loaded.
 func AssetInfo(name string) (os.FileInfo, error) {
-	cannonicalName := strings.Replace(name, "\\", "/", -1)
+	cannonicalName := strings.ReplaceAll(name, "\\", "/")
 	if f, ok := _bindata[cannonicalName]; ok {
 		a, err := f()
 		if err != nil {
@@ -226,7 +226,7 @@ var _bindata = map[string]func() (*asset, error){
 func AssetDir(name string) ([]string, error) {
 	node := _bintree
 	if len(name) != 0 {
-		cannonicalName := strings.Replace(name, "\\", "/", -1)
+		cannonicalName := strings.ReplaceAll(name, "\\", "/")
 		pathList := strings.Split(cannonicalName, "/")
 		for _, p := range pathList {
 			node = node.Children[p]
@@ -300,6 +300,6 @@ func RestoreAssets(dir, name string) error {
 }
 
 func _filePath(dir, name string) string {
-	cannonicalName := strings.Replace(name, "\\", "/", -1)
+	cannonicalName := strings.ReplaceAll(name, "\\", "/")
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
